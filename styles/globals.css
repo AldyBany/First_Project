@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @layer utilities{
 .icon-path{
     @apply fill-orange-600
@@ -20,8 +21,21 @@
 }
 }  
     
-html{
- scroll-behavior:smooth;
-}
+
+html {
+    scroll-behavior:smooth;
+    scrollbar-width: 22px;
+    scrollbar-color: #777 #555;
+  }
+
+  html::-webkit-scrollbar {
+    width: .8vw;
+    
+  }
+
+  html::-webkit-scrollbar-thumb {
+    border-radius: 100vw;
+    background-color: rgba(62, 62, 66, 0.333);
+  }
 
 

@@ -1,10 +1,14 @@
 import Head from 'next/head'
 import Sticky from 'react-stickynode'
-import React,{useState} from 'react'
+
 // import LocomotiveScroll from 'locomotive-scroll';
+import * as Scroll from 'react-scroll';
+import { Link, Button, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
+import { Scrollbars } from 'react-custom-scrollbars-2';
+
 
 import Image from 'next/image'
-import Link from 'next/link'
+// import Link from 'next/link'
 import Logo from '../components/Logo'
 import Navbar from '../components/Navbar'
 import About from '../section/About'
@@ -12,28 +16,36 @@ import Banner from '../section/Banner'
 import Footer from '../section/Footer'
 import Services from '../section/Services'
 import styles from '../styles/Home.module.css'
+import Modal from '../components/modal';
+import Contact from '../section/Contact';
+import { useState, useEffect } from 'react';
 
 export default function Home() {
 
+  const[modalOn, setModalOn] = useState(false)
   const[Index, setIndex] = useState(false)
   const[shadow, setShadow] = useState(false)
-//   const scroll = new LocomotiveScroll({
-//     el: document.querySelector('[data-scroll-container]'),
-//     smooth: true
-// });
 
-  const handleStateChange = (status) => {
-    setShadow(!shadow)
-    if (status.status === Sticky.STATUS_FIXED) {
-        console.log('the component is sticky');
-    }
-  };
+ 
+
+  useEffect(() => {
+    // const handleStateChange = (status) => {
+        
+    //   if (status.status === Sticky.STATUS_FIXED) {
+    //       console.log('the component is sticky');
+    //   }
+    // };
+
+    // handleStateChange()
+  }, []);
+
   const NavItems = [
-    {id:"#home",title:'Home'},
+    {id:"#home",title:'Acceuil'},
     {id:"#services",title:'Services'},
-    {id:"#contact",title:'Contact'},
-    {id:"#about",title:'About'},
-  ]
+    {id:"#contacts",title:'Contacts'},
+    {id:"#about",title:'A propos'},
+  ] 
+  
   const Data1 = [
     {id: 1, title:'Professionnelle'},
     {id: 2, title:"Chef d'entreprise"},
@@ -45,104 +57,149 @@ export default function Home() {
     {id: 8, title:'Maladie'},
     {id: 9, title:'Voyage accident rapatriement'},
   ]
+    
   const SkillsData = [
-    {id: 1, title:'Why an oil change',answer:' Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt labore, voluptate aperiam ipsam ut illo ducimus.'},
-    {id: 2, title:"Filter replacement",answer:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt labore, voluptate aperiam ipsam ut illo ducimus.'},
-    {id: 3, title:'When to request oil',answer:' Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt labore, voluptate aperiam ipsam ut illo ducimus.'},
-    {id: 4, title:'Technique',answer:' Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt labore, voluptate aperiam ipsam ut illo ducimus.'},
+    {id: 1, title:'POURQUOI ROYAL SERVICES?',answer:' Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt labore, voluptate aperiam ipsam ut illo ducimus.'},
+    {id: 2, title:"COMMENT NOS CONTACTER",answer:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt labore, voluptate aperiam ipsam ut illo ducimus.'},
+    {id: 3, title:'WHY IS A REGULAR RECOMMENDABLE?',answer:' Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt labore, voluptate aperiam ipsam ut illo ducimus.'},
+    {id: 4, title:'WHY REGULAR CAR SERVICING IS RECOMMENDED?',answer:' Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt labore, voluptate aperiam ipsam ut illo ducimus.'},
   ]
-  
+
   const handleSetIndex = (id)=>{
     setIndex(!Index)
     Index !== id && (setIndex(id)) 
     
   }
+  
+  
   return (
-    <div data-scroll-container>
-     <Sticky onStateChange={handleStateChange} innerActiveClass="shadow-md transition-shadow duration-500">
-    <section  className="w-full bg-white">
-    <nav className="relative max-w-6xl mx-auto  w-full space-x-40 flex items-center justify-between py-4 bg-white px-4 md:px-0">
-        <h1 className="text-2xl font-bold text-[#0b0b3a]">Royal<span className="text-orange-600">Services</span></h1>
-       
-        <ul className="hidden float-right md:flex space-x-12 text-text-primary">
-            {NavItems.map(item=>(
-                <Link href={item.id} className="cursor-pointer hover:text-orange-600" key={item.id}>
-                    <a>{item.title}</a>
-                </Link>
-            ))}
-        </ul>
-        <div className="bg-[#0b0b3a] flex items-center space-x-4 px-3 py-4 md:w-[180px] text-white rounded-md">
-          <div>
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-            </svg>
-          </div>
-          <div className="grid">
-            <p className="">Contact Nous</p>
-            <span className="font-semibold text-orange-600">(06)483-9857</span>
-          </div>
-        </div>
-      </nav>
-    </section>
-    </Sticky>
-     <section id="banner">
+    <>
     
-      
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 mt-24">
-          <div className="flex flex-col space-y-10 px-4 md:px-0">
-              <h1 className="max-w-5xl text-5xl md:text-6xl font-bold text-[#0b0b3a] mb-3">Des services de qualité pour vos voitures</h1>
-              <p className="max-w-3xl md:max-w-4xl text-[#0b0b3a] text-lg">Royal Services est un garage moderne offrant un entretien, des réparations de véhicules de haute qualité pour toutes les marques et tous les modèles.</p>
-              <div className="font-semibold text-white bg-orange-600 rounded-md px-8 flex w-[200px] py-4 lg:mt-40 text-md cursor-pointer">
-                <span className="shadow-2xl shadow-orange-600/20">En Savoir Plus </span>
-              </div>
-            
-          </div>
-          <div></div>
-      </div>
-     </section>
+     {/* <Banner/> */}
+     {/* <Navbar/> */}
+     <Sticky  innerActiveClass="shadow-md transition-shadow duration-500">
+        <div  className="w-full bg-white" id="home">
+        <div className=" max-w-6xl mx-auto  w-full md:space-x-24 lg:space-x-40 flex items-center justify-between py-4 bg-white px-4 md:px-0">
+            <h1 className="text-2xl font-bold text-[#0b0b3a]">Royal<span className="text-orange-600">Services</span></h1>
+        
+            <div className="hidden float-right md:flex space-x-12 text-text-primary">
+                {NavItems.map(item=>(
+                    <Link 
+                
+                    className="cursor-pointer hover:text-orange-600" 
+                    key={item.id}
+                    activeClass="text-orange-600"
+                            to={item.id} 
+                            spy={true}
+                            smooth={true}
+                            hashSpy={true}
+                            offset={-300}
+                            duration={500}
+                            delay={1000}
+                            isDynamic={true}
+                            spyThrottle={500}
+                    >
+                        <span>{item.title}</span>
+                    </Link>
+                ))}
+            </div>
+            <div className="bg-[#0b0b3a] flex items-center space-x13 md:space-x-4 px-3 py-4 md:w-[180px] text-white rounded-md">
+           
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-7 md:h-10 md:w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+            </svg>
+          
+            <div className="grid">
+                <p className="text-xs md:text-base font-semibold">Contact Nous</p>
+                <span className="font-semibold text-orange-600 text-xs md:text-base">(06)483-9857</span>
+            </div>
+            </div>
+        </div>
+        </div>
+      </Sticky>
+     <div id="home" name="#home" className="w-full h-[85vh]" style={{backgroundImage:`url('./bg1.jpg')`,backgroundRepeat:'no-repeat', backgroundSize:'cover',backgroundPosition:'center'}}>
+    
+     <ul className="md:hidden fixed bottom-0 left-0 bg-orange-600 w-full flex items-center justify-around px-6 py-5 text-white rounded-t-l-md rounded-t-r-md shadow-xl">
+                {NavItems.map(item=>(
+                    <Link 
+                
+                    className="cursor-pointer hover:text-orange-600" 
+                    key={item.id}
+                    activeClass="text-bleu-800"
+                            to={item.id} 
+                            spy={true}
+                            smooth={true}
+                            hashSpy={true}
+                            offset={-300}
+                            duration={500}
+                            delay={1000}
+                            isDynamic={true}
+                            spyThrottle={500}
+                    >
+                        <span>{item.title}</span>
+                    </Link>
+                ))}
+            </ul> 
+    <div className="max-w-6xl mx-auto grid md:grid-cols-2 pt-24">
+        <div className="flex flex-col space-y-10 px-4 md:px-0">
+            <h1 className="max-w-5xl text-5xl md:text-6xl font-bold text-[#0b0b3a] mb-3">Des services de qualité pour vos voitures</h1>
+            <p className="max-w-3xl md:max-w-4xl text-[#0b0b3a] text-lg">Royal Services est un garage moderne offrant un entretien, des réparations de véhicules de haute qualité pour toutes les marques et tous les modèles.</p>
+            <div className="font-semibold text-white bg-orange-600 rounded-md px-8 flex w-[200px] py-4 lg:mt-40 text-md cursor-pointer">
+              <span className="shadow-2xl shadow-orange-600/20">En Savoir Plus </span>
+            </div>
+          
+        </div>
+        <div></div>
+    </div>
+   </div>
 
-    <section className="max-w-6xl mx-auto grid sm:grid-cols-2  gap-10 md:gap-16 items-center min-h-96 pt-36 px-8 mb-32" id="">
-       <div className="h-60 w-full rounded-md" style={{backgroundImage:`url('./bg2.jpg')`,backgroundRepeat:'no-repeat', backgroundSize:'cover',backgroundPosition:'center'}}></div>
+    <div className="max-w-6xl mx-auto grid sm:grid-cols-2  gap-10 md:gap-16 items-center min-h-96 pt-36 px-8 mb-32" id="">
+       <div className="h-60 w-full rounded-md" style={{backgroundImage:`url('./bg2.jpg')`,backgroundRepeat:'no-repeat', backgroundSize:'cover',backgroundPosition:'center'}} onClick ={()=>setModalOn(!modalOn)}>
+         Dire quelque chose
+         {modalOn && <Modal setModalOn={setModalOn}/>}
+         
+       </div>
        <div className="flex flex-col space-y-8 py-4">
          <h2 className="font-bold text-4xl text-[#0b0b3a] mb-8 sm:mb-2">Profitez de votre
 Service de voiture</h2>
          <p className="text-gray-500 text-base">Entretien, entretien et réparation de véhicules de haute qualité pour toutes les marques et tous les modèles. À une qualité abordable garantie avec une touche personnelle. Par l’une des plus grandes chaînes d’ateliers indépendants au monde. C’est Royal Car Service!</p>
 
-         <p className="font-bold text-blue-900 mt-24 text-md">About Royal Car Service</p>
+         <p className="font-semibold text-orange-600 mt-24 text-md">About Royal Car Service</p>
        </div>
     
-     </section>
-     <section className="max-w-6xl mx-auto mt-14" id="services">
-    <h2 className="text-3xl lg:text-4xl font-bold text-[#0b0b3a] mb-8 text-center text-[#0b0b3a]">Nos services</h2>
-    <p className="px-8 max-w-3xl mx-auto text-center text-gray-500">Chez Royal Car Service, nous offrons une gamme complète de services pour tout ce dont votre voiture a besoin. Jetez un coup d’œil à nos services pour en savoir plus.</p>
+     </div>
+
+    <div className="max-w-6xl mx-auto mt-14" id="services" name="#services">
+    <h2 className="text-3xl lg:text-4xl font-bold text-[#0b0b3a] mb-8 text-left px-8 md:px-0 md:text-center text-[#0b0b3a]">Nos services</h2>
+    <p className="px-8 max-w-3xl mx-auto text-left md:text-center text-gray-500">Chez Royal Car Service, nous offrons une gamme complète de services pour tout ce dont votre voiture a besoin. Jetez un coup d’œil à nos services pour en savoir plus.</p>
 
     <div className="grid lg:px-8 mt-32">
-        <h2 className="text-lg text-[#0b0b3a] font-bold text-center mb-10">Assurance Automobile</h2>
+        <h2 className="text-xl text-orange-600 font-bold text-left md:text-center mb-10 px-8 md:px-0">Assurance Automobile</h2>
       <div className="grid gap-4 md:grid-cols-2 px-8">
-        <div className=" flex flex-col space-y-4">
+        <div className=" flex flex-col space-y-4 mb-6">
             {
               Data1.map(item=>(
                 <p key={item.id} className="flex items-center space-x-2">
-                  <span className="w-3 h-3 rounded-full bg-orange-600"></span>  <span className="text-xl font-semibold text-[#0b0b3a]">{item.title}</span>
+                  <span className="w-3 h-3 rounded-full bg-orange-600"></span>  <span className="text-base font-semibold text-[#0b0b3a]">{item.title}</span>
                 </p>
               ))
             }
         </div>
-        <div className="h-80 rounded-md bg-[#0b0b3a]">
+        <div className="h-80 rounded-md bg-[#0b0b3a]" style={{backgroundImage:`url('./car.jpeg')`,backgroundRepeat:'no-repeat', backgroundSize:'cover',backgroundPosition:'center'}}>
 
         </div>
       </div>
     </div>
 
-    <div className="grid lg:px-8 mt-32">
-      <h2 className="text-lg text-[#0b0b3a] font-bold text-center mb-10">Lavage et Mechanic modern</h2>
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 px-8">
+    <div className="grid mt-32">
+      <h2 className="text-xl text-orange-600 font-bold text-left md:text-center mb-10 px-8 md:px-0">Lavage et Mechanic modern</h2>
+      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 px-4 md:px-0">
         {Data4.map(item=>(
-          <div className="flex items-start space-x-4">
-            <div className="h-40 w-40">
+          <div className="flex items-start space-x-4" key={item.id}>
+            <div className="hidden md:block h-40 w-40">
                 {item.icon}
             </div>
-            <div className="flex flex-col space-y-6">
+            <div className="flex flex-col space-y-2 md:space-y-6">
               <h4 className="font-semibold text-xl text-[#0b0b3a]">{item.title}</h4>
               <p className="text-gray-500">{item.description}</p>
 
@@ -153,59 +210,59 @@ Service de voiture</h2>
     </div>
 
 
-  </section>
-     <section className="max-w-5xl mx-8 sm:mx-auto md:h-80 rounded-xl  bg-blue-900 grid md:grid-cols-2 overflow-hidden mt-40" id="contact">
-            <div className="h-full bg-[#0b0b3a] px-4 py-6">
-                <p className="text-center mb-6 md:text-left text-gray-100 mt-10">Royal Car Service, les experts automobiles. C’est la bonne adresse pour une qualité de service exceptionnelle pour votre voiture. Que vous cherchiez des conseils, <span className="text-orange-600 font-semibold">064839857</span> travaux de réparation ou de service, nous pouvons offrir le package complet.</p>
-                <div className="max-w-[220px] flex items-center space-x-3 mx-auto md:mx-0 mb-5 px-6 py-4 bg-orange-600 text-gray-200 font-semibold rounded-md text-center shadow-2xl shadow-orange-600/20">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                  </svg>
-                  <span>Contactez Nous!</span>
-
-                </div>
-            </div>
-            <div className="px-4 py-6 h-80" style={{backgroundImage:`url('./bg.jpg')`,backgroundRepeat:'no-repeat', backgroundSize:'cover',backgroundPosition:'center'}}></div>
-     </section>
-
-      <section className="max-w-5xl mx-auto px-8 pt-32 pb-20 mt-20 mb-28" id="about">
-      
-        <div className="grid md:grid-cols-2 content-between gap-14 mt-16">
-          <div className="h-[500px] w-80 bg-[#0b0b3a] rounded-md -order-1"></div>
-          <div>
-            <h2 className="font-bold text-3xl mb-8 text-[#0b0b3a]">Pourquoi choisir Royal Services</h2>
-            <p className="mb-12 text-gray-500 text-base">Royal Car Service, les experts automobiles. C’est la bonne adresse pour une qualité de service exceptionnelle pour votre voiture.</p>
-            {
-              SkillsData.map(skills=>(
-              <div className="bg-white rounded-md shadow-xl mb-4 border-l-4 border-orange-600" key={skills.id}>
-                <div className="flex p-4 items-center justify-between cursor-pointer">
-                  <span className="font-semibold text-[#0b0b3a]">{skills.title}</span>
-                  <span onClick={()=>handleSetIndex(skills.id)} className="transition-all duration-500">
-                    {Index == skills.id ?<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-  <path strokeLinecap="round" strokeLinejoin="round" d="M18 12H6" />
-</svg>:<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-orange-600 transition-all duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                    </svg>
-                    }
-                  </span>
-                </div>
-                { Index == skills.id &&  <div className=" p-4 rounded-md text-gray-500">{skills.answer}</div>}
-              </div>
-              ))
-            }
-           
-          </div>
-        </div>
-        
-      </section>
     </div>
+    
+    <div className="max-w-2xl md:max-w-4xl mx-8 sm:mx-auto md:h-80 rounded-xl bg-blue-900 grid sm:grid-cols-2 overflow-hidden mt-40" id="contact" name="#contacts">
+    <div className="h-full bg-[#0b0b3a] p-7">
+        <p className="text-center mb-10 md:text-left text-gray-100 mt-6">Royal Car Service, les experts automobiles. C’est la bonne adresse pour une qualité de service exceptionnelle pour votre voiture. Que vous cherchiez des conseils, <span className="text-orange-600 font-semibold">064839857</span> travaux de réparation ou de service, nous pouvons offrir le package complet.</p>
+        <div className="max-w-[220px] flex items-center space-x-3 mx-auto md:mx-0 mb-5 px-6 py-4 bg-orange-600 text-gray-200 font-semibold rounded-md text-center shadow-2xl shadow-orange-600/20">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+          </svg>
+          <span>Contactez Nous!</span>
+
+        </div>
+    </div>
+    <div className="px-4 py-6 h-80 -order-1 md:order-1" style={{backgroundImage:`url('./bg.jpg')`,backgroundRepeat:'no-repeat', backgroundSize:'cover',backgroundPosition:'center'}}></div>
+    </div>
+
+     <div className="max-w-6xl mx-auto px-8 md:pt-32 pb-20 mt-20 mb-28" id="about" name="#about">
+      
+      <div className="grid md:grid-cols-2 content-between gap-14 mt-16">
+        <div className="h-[350px] w-full rounded-md -order-1" style={{backgroundImage:`url('./about.jpg')`,backgroundRepeat:'no-repeat', backgroundSize:'cover',backgroundPosition:'center'}}></div>
+        <div>
+          <h2 className="font-bold text-3xl mb-4 md:mb-8 text-[#0b0b3a]">Pourquoi choisir Royal Services</h2>
+          <p className="mb-12 text-gray-500 text-base">Royal Car Service, les experts automobiles. C’est la bonne adresse pour une qualité de service exceptionnelle pour votre voiture.</p>
+          {
+            SkillsData.map(skills=>(
+            <div className="bg-white rounded-md shadow-xl mb-4 border-l-4 border-orange-600" key={skills.id}>
+              <div className="flex p-4 items-center justify-between cursor-pointer">
+                <span className="font-semibold text-[#0b0b3a]">{skills.title}</span>
+                <span onClick={()=>handleSetIndex(skills.id)} className="transition-all duration-500">
+                  {Index == skills.id ?<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M18 12H6" />
+  </svg>:<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-orange-600 transition-all duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                  </svg>
+                  }
+                </span>
+              </div>
+              { Index == skills.id &&  <div className=" p-4 rounded-md text-gray-500">{skills.answer}</div>}
+            </div>
+            ))
+          }
+         
+        </div>
+      </div>
+      
+    </div>
+    </>
   )
 }
 
 
-
 const Data4 = [
-  {id:1, title:'Anti Lock Brake Servicing', description:'L’entretien périodique de la voiture est quelque chose que tout propriétaire de voiture responsable fait. Mais vous devez savoir que vous pouvez faire pleinement confiance aux compétences et à l’intégrité du fournisseur que vous avez choisi.',details:[
+  {id:1, title:'Entretien des freins antiblocage', description:'L’entretien périodique de la voiture est quelque chose que tout propriétaire de voiture responsable fait. Mais vous devez savoir que vous pouvez faire pleinement confiance aux compétences et à l’intégrité du fournisseur que vous avez choisi.',details:[
     {id:1,name:'For all vehicule models of any age, even new ones'},
     {id:2,name:'Complete with manufacturer and mobility garantee'},
     {id:3,name:'High-quality replacement parts used'},
@@ -320,7 +377,7 @@ const Data4 = [
                               c-3.04,0-5.52-2.47-5.52-5.52C105.96,415.21,108.44,412.73,111.49,412.73L111.49,412.73z M111.49,412.73"></path>
                           </g>
                       </svg>},
-  {id:2, title:'Entire Engine Servicing', description:'Nous pouvons fournir des travaux d’entretien et de maintenance professionnels avec non moins de couverture de garantie du fabricant',details:[
+  {id:2, title:'Entretien complet du moteur', description:'Nous pouvons fournir des travaux d’entretien et de maintenance professionnels avec non moins de couverture de garantie du fabricant',details:[
     {id:1,name:'For all vehicule models of any age, even new ones'},
     {id:2,name:'Complete with manufacturer and mobility garantee'},
     {id:3,name:'Recording of all work in service booklet'},
@@ -387,7 +444,7 @@ const Data4 = [
                           M407.23,406.56"></path>
                           </g>
                       </svg>},
-  {id:3, title:'Car Wash Service', description:'Une simple vérification de la batterie de Bosch Car Service vous aidera à éviter les inconvénients d’une batterie déchargée.',details:[
+  {id:3, title:'Lavage de voiture', description:'Une simple vérification de la batterie de Bosch Car Service vous aidera à éviter les inconvénients d’une batterie déchargée.',details:[
     {id:1,name:'For all vehicule models of any age, even new ones'},
     {id:2,name:'Complete with manufacturer and mobility garantee'},
     {id:3,name:'Recording of all work in service booklet'},
@@ -476,7 +533,7 @@ const Data4 = [
                               z M461.92,117.95H149.28V98.73h312.65V117.95z M554.96,118.16h-26.81l-5.75-19.43h32.56V118.16z M554.96,118.16"></path>
                           </g>
                       </svg>},
-  {id:4, title:'Battery Replacement', description:'Royal Services fournit la gamme complète de services électriques et électroniques, du diagnostic et de la réparation des problèmes avec le système informatisé de votre véhicule.',details:[
+  {id:4, title:'Remplacement de la batterie', description:'Royal Services fournit la gamme complète de services électriques et électroniques, du diagnostic et de la réparation des problèmes avec le système informatisé de votre véhicule.',details:[
     {id:1,name:'For all vehicule models of any age, even new ones'},
     {id:2,name:'Complete with manufacturer and mobility garantee'},
     {id:3,name:'High-quality replacement parts used'},
@@ -509,7 +566,7 @@ const Data4 = [
                           <rect x="476.73" y="167.89" width="18.07" height="18.07"></rect>
                           <rect x="440.58" y="167.89" width="18.07" height="18.07"></rect>
                       </svg>},
-  {id:5, title:'Change Oil and Filter', description:'Formé et équipé pour faire face aux problèmes électroniques et électriques Explication claire des problèmes complexes Pièces de rechange de haute qualité utilisées',details:[
+  {id:5, title:'Changer l’huile et le filtre', description:'Formé et équipé pour faire face aux problèmes électroniques et électriques Explication claire des problèmes complexes Pièces de rechange de haute qualité utilisées',details:[
     {id:1,name:'For all vehicule models of any age, even new ones'},
     {id:2,name:'Complete with manufacturer and mobility garantee'},
     {id:3,name:'Recording of all work in service booklet'},
@@ -552,7 +609,7 @@ const Data4 = [
                       M546.06,117.53h-17.71V90.97h17.71V117.53z M546.06,117.53"></path>
                           <rect x="67.98" y="170.65" className="icon-path" width="123.95" height="17.71"></rect>
                       </svg>},
-  {id:6, title:'Tire Change and Repair', description:"Enjoy a consistently pleasant temperature Filter out many airborne contaminants Avoid unpleasant aircon odours",details:[
+  {id:6, title:'Changement et réparation de pneus', description:"Enjoy a consistently pleasant temperature Filter out many airborne contaminants Avoid unpleasant aircon odours",details:[
     {id:1,name:'For all vehicule models of any age, even new ones'},
     {id:2,name:'Complete with manufacturer and mobility garantee'},
     {id:3,name:'Recording of all work in service booklet'},
@@ -593,3 +650,7 @@ const Data4 = [
                       s8.36-18.68,18.68-18.68c10.32,0,18.68,8.36,18.68,18.68S305.93,315,295.61,315z"></path>
                       </svg>},
 ]
+
+
+
+
