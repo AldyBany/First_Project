@@ -5,7 +5,7 @@ const Assurance = () => {
     <div className="grid grid-cols-3 md:grid-cols-7 gap-2">
         {
             assuranceData.map(assurance=>(
-                <div className="flex flex-col items-center space-y-3">
+                <div className="flex flex-col items-center space-y-3" key={assurance.id}>
                     <div className="md:w-28 w-24 h-24 md:h-28 rounded-full p-2 shadow-xl flex justify-center items-center">
                         {assurance.icon}
                     
