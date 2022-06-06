@@ -1,14 +1,8 @@
-import Head from 'next/head'
+import React,{useState} from 'react'
 import Sticky from 'react-stickynode'
-
-// import LocomotiveScroll from 'locomotive-scroll';
-import * as Scroll from 'react-scroll';
 import { Link, Button, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
-import { Scrollbars } from 'react-custom-scrollbars-2';
-
-
 import Image from 'next/image'
-// import Link from 'next/link'
+
 import Logo from '../components/Logo'
 import Navbar from '../components/Navbar'
 import About from '../section/About'
@@ -16,28 +10,15 @@ import Banner from '../section/Banner'
 import Footer from '../section/Footer'
 import Services from '../section/Services'
 import styles from '../styles/Home.module.css'
-import Modal from '../components/modal';
+
 import Contact from '../section/Contact';
-import { useState, useEffect } from 'react';
+import Skills from '../section/Skills'
+import Mechanic_Service from '../components/Mechanic_Service';
+import Assurance from '../components/Assurance'
+import Modal from '../components/modal';
+
 
 export default function Home() {
-
-  const[modalOn, setModalOn] = useState(false)
-  const[Index, setIndex] = useState(false)
-  const[shadow, setShadow] = useState(false)
-
- 
-
-  useEffect(() => {
-    // const handleStateChange = (status) => {
-        
-    //   if (status.status === Sticky.STATUS_FIXED) {
-    //       console.log('the component is sticky');
-    //   }
-    // };
-
-    // handleStateChange()
-  }, []);
 
   const NavItems = [
     {id:"#home",title:'Acceuil'},
@@ -45,6 +26,7 @@ export default function Home() {
     {id:"#contacts",title:'Contacts'},
     {id:"#about",title:'A propos'},
   ] 
+
   
   const Data1 = [
     {id: 1, title:'Professionnelle'},
@@ -57,6 +39,11 @@ export default function Home() {
     {id: 8, title:'Maladie'},
     {id: 9, title:'Voyage accident rapatriement'},
   ]
+  const[modalOn, setModalOn] = useState(false)
+  const[Index, setIndex] = useState(false)
+  const[shadow, setShadow] = useState(false)
+
+ 
     
   const SkillsData = [
     {id: 1, title:'POURQUOI ROYAL SERVICES?',answer:' Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt labore, voluptate aperiam ipsam ut illo ducimus.'},
@@ -70,17 +57,22 @@ export default function Home() {
     Index !== id && (setIndex(id)) 
     
   }
+
+
+
+ 
   
   
   return (
     <>
     
-     {/* <Banner/> */}
-     {/* <Navbar/> */}
-     <Sticky  innerActiveClass="shadow-md transition-shadow duration-500">
+    
+     
+    <div>
+      <Sticky  innerActiveClass="shadow-md transition-shadow duration-500">
         <div  className="w-full bg-white" id="home">
         <div className=" max-w-6xl mx-auto  w-full md:space-x-24 lg:space-x-40 flex items-center justify-between py-4 bg-white px-4 md:px-0">
-            <h1 className="text-2xl font-bold text-[#0b0b3a]">Royal<span className="text-orange-600">Services</span></h1>
+            <h1 className="text-2xl font-bold text-[#0b1c3a]">Royal<span className="text-orange-600">Services</span></h1>
         
             <div className="hidden float-right md:flex space-x-12 text-text-primary">
                 {NavItems.map(item=>(
@@ -103,7 +95,7 @@ export default function Home() {
                     </Link>
                 ))}
             </div>
-            <div className="bg-[#0b0b3a] flex items-center space-x13 md:space-x-4 px-3 py-4 md:w-[180px] text-white rounded-md">
+            <div className="bg-[#0b1c3a] flex items-center space-x13 md:space-x-4 px-3 py-4 md:w-[180px] text-white rounded-md">
            
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-7 md:h-10 md:w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
@@ -117,15 +109,15 @@ export default function Home() {
         </div>
         </div>
       </Sticky>
-     <div id="home" name="#home" className="w-full h-[85vh]" style={{backgroundImage:`url('./bg1.jpg')`,backgroundRepeat:'no-repeat', backgroundSize:'cover',backgroundPosition:'center'}}>
+     <div id="home" name="#home" className="w-full h-[85vh]">
     
      <ul className="md:hidden fixed bottom-0 left-0 bg-orange-600 w-full flex items-center justify-around px-6 py-5 text-white rounded-t-l-md rounded-t-r-md shadow-xl">
                 {NavItems.map(item=>(
                     <Link 
                 
-                    className="cursor-pointer hover:text-orange-600" 
+                    className="cursor-pointer hover:text-primary" 
                     key={item.id}
-                    activeClass="text-bleu-800"
+                    activeClass="text-primary"
                             to={item.id} 
                             spy={true}
                             smooth={true}
@@ -141,71 +133,412 @@ export default function Home() {
                 ))}
             </ul> 
     <div className="max-w-6xl mx-auto grid md:grid-cols-2 pt-24">
-        <div className="flex flex-col space-y-10 px-4 md:px-0">
-            <h1 className="max-w-5xl text-5xl md:text-6xl font-bold text-[#0b0b3a] mb-3">Des services de qualité pour vos voitures</h1>
-            <p className="max-w-3xl md:max-w-4xl text-[#0b0b3a] text-lg">Royal Services est un garage moderne offrant un entretien, des réparations de véhicules de haute qualité pour toutes les marques et tous les modèles.</p>
+        <div></div>
+        <div className="flex flex-col space-y-5 px-3 md:px-0">
+            <h1 className="max-w-5xl text-4xl md:text-5xl font-bold text-[#0b1c3a] mb-6">Des services de qualité pour vos voitures</h1>
+            <div className="grid space-y-6">
+              <div className="flex space-x-4 items-center">
+                <div className="w-14 h-14 bg-[#0b1c3a] rounded-full">
+                <svg className="w-12 h-12" xmlns="http://www.w3.org/2000/svg" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 400 400">
+<g>
+	<g>
+		<g>
+			<path fill="#E5E5E4" d="M205.753,68.358l-22.138,17.641v32.668h-21.594l-5.467-10.062h-32.796l-7.222,10.186v214.528h171.051     V68.358H205.753z M262.223,97.705h-47.584c-5.093,0-9.223-4.13-9.223-9.223c0-5.093,4.13-9.223,9.223-9.223h47.584     c5.093,0,9.223,4.13,9.223,9.223C271.446,93.575,267.316,97.705,262.223,97.705z"/>
+		</g>
+		<g>
+			<polygon fill="#EFEFEF" points="140.865,108.605 123.758,108.605 116.536,118.791 116.536,333.319 133.643,333.319      133.643,118.791    "/>
+		</g>
+		<g>
+			<path fill="#8EC0D6" d="M133.306,169.495c0-6.87,4.255-7.227,11.117-7.227h76.214c6.871,0,6.58,0.357,6.58,7.227v121.9     c0,6.868,0.291,8.385-6.58,8.385H141.54c-6.862,0-8.234-1.516-8.234-8.385V169.495z"/>
+		</g>
+		<g>
+			<rect x="126.598" y="91.836" fill="#E5E5E4" width="26.831" height="16.77"/>
+		</g>
+		<g>
+			<path fill="#FFDA88" d="M202.399,236.934c0,10.932-10.939,16.398-18.447,16.398c-8.889,0-19.816-5.467-19.816-16.398     c0-15.283,19.816-32.798,19.816-32.798S202.399,221.652,202.399,236.934z"/>
+		</g>
+		<g>
+			<path fill="#FFE2A9" d="M174.199,236.934c0-10.155,8.735-21.268,14.605-27.6c-2.758-3.197-4.851-5.198-4.851-5.198     s-19.816,17.515-19.816,32.798c0,10.932,10.926,16.398,19.816,16.398c1.471,0,3.076-0.218,4.7-0.637     C181.263,250.973,174.199,245.724,174.199,236.934z"/>
+		</g>
+		<g>
+			<rect x="247.34" y="179.038" fill="#8EC0D6" width="23.478" height="16.77"/>
+		</g>
+		<g>
+			<rect x="247.34" y="205.869" fill="#8EC0D6" width="23.478" height="16.77"/>
+		</g>
+		<g>
+			<rect x="247.34" y="232.701" fill="#8EC0D6" width="23.478" height="16.77"/>
+		</g>
+		<g>
+			<rect x="247.34" y="259.533" fill="#8EC0D6" width="23.478" height="16.77"/>
+		</g>
+		<g>
+			<path fill="#8EC0D6" d="M165.974,80.097c0,6.483-5.63,11.739-12.577,11.739h-26.763c-6.947,0-12.577-5.255-12.577-11.739l0,0     c0-6.484,5.631-11.739,12.577-11.739h26.763C160.344,68.358,165.974,73.613,165.974,80.097L165.974,80.097z"/>
+		</g>
+		<g>
+			<path fill="#A9D2E0" d="M127.469,80.097c0-6.484,5.63-11.739,12.577-11.739h-13.413c-6.947,0-12.577,5.255-12.577,11.739     c0,6.483,5.631,11.739,12.577,11.739h13.413C133.1,91.836,127.469,86.58,127.469,80.097z"/>
+		</g>
+		<g>
+			<rect x="126.598" y="91.836" fill="#EFEFEF" width="14.267" height="16.77"/>
+		</g>
+	</g>
+	<g>
+		<g>
+			<path fill="#161616" d="M151.753,111.959h-26.832c-2.777,0-5.031-2.252-5.031-5.031v-16.77c0-2.779,2.254-5.031,5.031-5.031     h26.832c2.777,0,5.031,2.252,5.031,5.031v16.77C156.784,109.707,154.53,111.959,151.753,111.959z M129.952,101.897h16.77v-6.708     h-16.77V101.897z"/>
+		</g>
+		<g>
+			<path fill="#161616" d="M183.952,258.363c-12.214,0-24.847-8.015-24.847-21.429c0-17.058,19.311-34.62,21.516-36.567     c1.955-1.725,4.906-1.675,6.796,0.121c0.816,0.776,20.012,19.202,20.012,36.446C207.43,251.552,193.421,258.363,183.952,258.363z      M183.822,211.251c-5.945,6.135-14.654,17.004-14.654,25.684c0,7.841,8.647,11.367,14.785,11.367     c4.677,0,13.416-3.334,13.416-11.367C197.368,228.24,189.354,217.418,183.822,211.251z"/>
+		</g>
+		<g>
+			<rect x="247.34" y="179.038" fill="#161616" width="23.478" height="16.77"/>
+		</g>
+		<g>
+			<rect x="247.34" y="205.869" fill="#161616" width="23.478" height="16.77"/>
+		</g>
+		<g>
+			<rect x="247.34" y="232.701" fill="#161616" width="23.478" height="16.77"/>
+		</g>
+		<g>
+			<rect x="247.34" y="259.533" fill="#161616" width="23.478" height="16.77"/>
+		</g>
+		<g>
+			<path fill="#161616" d="M151.753,95.189H124.99c-9.708,0-17.608-7.523-17.608-16.77s7.9-16.77,17.608-16.77h26.763     c9.708,0,17.608,7.523,17.608,16.77S161.461,95.189,151.753,95.189z M124.99,71.712c-4.16,0-7.546,3.008-7.546,6.708     s3.387,6.708,7.546,6.708h26.763c4.16,0,7.546-3.008,7.546-6.708s-3.387-6.708-7.546-6.708H124.99z"/>
+		</g>
+		<g>
+			<path fill="#161616" d="M287.587,338.35H116.536c-2.777,0-5.031-2.252-5.031-5.031V118.791c0-1.043,0.324-2.059,0.927-2.91     l7.222-10.186c0.943-1.33,2.473-2.121,4.104-2.121h32.796c1.844,0,3.541,1.009,4.422,2.628l4.038,7.433h13.57V85.999     c0-1.531,0.698-2.981,1.896-3.935l22.138-17.639c0.891-0.711,1.995-1.097,3.135-1.097h81.834c2.777,0,5.031,2.252,5.031,5.031     v218.006c0,2.779-2.253,5.031-5.031,5.031s-5.031-2.252-5.031-5.031V73.389h-75.044l-18.866,15.034v30.244     c0,2.779-2.253,5.031-5.031,5.031h-21.594c-1.844,0-3.541-1.009-4.422-2.628l-4.038-7.433h-27.202l-4.792,6.759v207.894h160.989     v-14.254c0-2.779,2.253-5.031,5.031-5.031s5.031,2.252,5.031,5.031v19.285C292.618,336.098,290.365,338.35,287.587,338.35z      M262.223,102.736h-47.584c-7.861,0-14.254-6.395-14.254-14.254c0-7.859,6.393-14.254,14.254-14.254h47.584     c7.861,0,14.254,6.395,14.254,14.254C276.477,96.341,270.084,102.736,262.223,102.736z M214.639,84.289     c-2.312,0-4.192,1.88-4.192,4.192c0,2.312,1.88,4.192,4.192,4.192h47.584c2.312,0,4.192-1.88,4.192-4.192     c0-2.312-1.88-4.192-4.192-4.192H214.639z"/>
+		</g>
+		<g>
+			<path fill="#161616" d="M220.636,304.811h-78.107c-14.254,0-14.254-10.628-14.254-16.979v-78.189     c0-2.779,2.253-5.031,5.031-5.031c2.777,0,5.031,2.252,5.031,5.031v78.189c0,6.918,0,6.918,4.192,6.918h78.107     c0.645,0,1.038-0.059,1.251-0.108c0.308-0.976,0.301-3.542,0.298-5.458V171.492c0-1.033,0.026-1.97,0.049-2.817     c0.013-0.436,0.026-0.919,0.029-1.359c-0.203-0.007-0.439-0.012-0.708-0.012l-77.134-0.005c-1.395,0-5.08,0-5.932,0.531     c0.023,0.023-0.154,0.488-0.154,1.665v12.687c0,2.779-2.253,5.031-5.031,5.031c-2.778,0-5.031-2.252-5.031-5.031v-12.687     c0-12.258,10.504-12.258,16.147-12.258l77.134,0.005c2.899,0,6.171,0.318,8.46,2.673c2.456,2.525,2.368,5.691,2.276,9.04     c-0.023,0.763-0.046,1.607-0.046,2.537v117.674c0.01,4.846,0.016,9.425-3.216,12.663     C227.03,303.835,224.282,304.811,220.636,304.811z"/>
+		</g>
+	</g>
+</g>
+</svg>
+                </div>
+                <h4 className="text-[19px] md:text-xl font-bold text-[#0b1c3a]">Promoting pickUp & Drop Service.</h4>
+              </div>
+
+              <div className="flex space-x-4 items-center">
+                <div className="w-14 h-14 bg-[#0b1c3a] rounded-full">
+                <svg className="w-12 h-12" xmlns="http://www.w3.org/2000/svg"  version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 400 400">
+<g>
+	<g>
+		<g>
+			<polygon fill="#FFDA88" points="130.45,217.329 130.45,170.374 73.433,170.374 73.433,190.497 110.326,190.497 110.326,240.807      163.99,240.807 163.99,217.329    "/>
+		</g>
+		<g>
+			<path fill="#7FD3B9" d="M284.731,238.871c0,8.478-6.872,15.351-15.348,15.351h-90.045c-8.477,0-15.348-6.873-15.348-15.351     v-22.96c0-8.478,6.871-15.351,15.348-15.351h90.045c8.477,0,15.348,6.873,15.348,15.351V238.871z"/>
+		</g>
+		<g>
+			<path fill="#BBEAD9" d="M174.051,238.871v-22.96c0-8.478,6.872-15.351,15.348-15.351h-10.062     c-8.477,0-15.348,6.873-15.348,15.351v22.96c0,8.478,6.871,15.351,15.348,15.351H189.4     C180.923,254.222,174.051,247.349,174.051,238.871z"/>
+		</g>
+		<g>
+			<rect x="284.731" y="213.975" fill="#FFDA88" width="20.124" height="23.478"/>
+		</g>
+		<g>
+			<path fill="#E5E5E4" d="M200.883,235.34c0,3.02-2.447,5.467-5.467,5.467h-2.483c-3.02,0-5.467-2.447-5.467-5.467v-12.544     c0-3.02,2.447-5.467,5.467-5.467h2.483c3.02,0,5.467,2.447,5.467,5.467V235.34z"/>
+		</g>
+		<g>
+			<path fill="#E5E5E4" d="M264.608,235.34c0,3.02-2.447,5.467-5.463,5.467h-2.489c-3.017,0-5.463-2.447-5.463-5.467v-12.544     c0-3.02,2.447-5.467,5.463-5.467h2.489c3.016,0,5.463,2.447,5.463,5.467V235.34z"/>
+		</g>
+		<g>
+			<path fill="#E5E5E4" d="M330.327,217.552c1.815-1.955,2.948-4.549,2.948-7.422c0-6.033-4.893-10.933-10.933-10.933     c-6.033,0-10.933,4.9-10.933,10.933c0,4.419,2.64,8.2,6.41,9.928c-0.583,1.125-0.94,2.384-0.94,3.737     c0,4.526,3.668,8.198,8.205,8.198c4.52,0,8.191-3.672,8.191-8.198C333.275,221.277,332.119,219.054,330.327,217.552z"/>
+		</g>
+		<g>
+			<path fill="#E5E5E4" d="M305.939,174.601c0,4.526-3.662,8.198-8.191,8.198c-4.526,0-8.202-3.672-8.202-8.198     c0-4.523,3.675-8.198,8.202-8.198C302.277,166.402,305.939,170.077,305.939,174.601z"/>
+		</g>
+		<g>
+			<path fill="#E5E5E4" d="M316.879,144.536c0,3.018-2.457,5.465-5.47,5.465c-3.016,0-5.47-2.447-5.47-5.465     c0-3.015,2.453-5.467,5.47-5.467C314.422,139.07,316.879,141.522,316.879,144.536z"/>
+		</g>
+		<g>
+			<path fill="#E5E5E4" d="M284.076,166.402c0,3.018-2.443,5.465-5.46,5.465c-3.017,0-5.466-2.447-5.466-5.465     c0-3.018,2.45-5.47,5.466-5.47C281.633,160.933,284.076,163.384,284.076,166.402z"/>
+		</g>
+		<g>
+			<rect x="73.433" y="170.374" fill="#FFE2A9" width="6.708" height="20.124"/>
+		</g>
+		<g>
+			<rect x="110.326" y="190.497" fill="#FFE2A9" width="6.708" height="50.309"/>
+		</g>
+	</g>
+	<g>
+		<g>
+			<path fill="#161616" d="M162.313,247.514H108.65c-2.779,0-5.031-2.252-5.031-5.031v-45.278H71.756     c-2.779,0-5.031-2.252-5.031-5.031v-20.124c0-2.779,2.252-5.031,5.031-5.031h57.017c2.779,0,5.031,2.252,5.031,5.031v41.924     h28.509c2.779,0,5.031,2.252,5.031,5.031v23.478C167.343,245.263,165.092,247.514,162.313,247.514z M113.68,237.453h43.601     v-13.416h-28.508c-2.779,0-5.031-2.252-5.031-5.031v-41.924H76.787v10.062h31.863c2.779,0,5.031,2.252,5.031,5.031V237.453z"/>
+		</g>
+		<g>
+			<path fill="#161616" d="M267.706,260.93h-90.045c-11.238,0-20.379-9.143-20.379-20.382v-22.96     c0-11.239,9.141-20.382,20.379-20.382h90.045c11.238,0,20.379,9.143,20.379,20.382v22.96     C288.085,251.787,278.944,260.93,267.706,260.93z M177.661,207.267c-5.689,0-10.317,4.63-10.317,10.321v22.96     c0,5.691,4.628,10.321,10.317,10.321h90.045c5.689,0,10.317-4.63,10.317-10.321v-22.96c0-5.691-4.628-10.321-10.317-10.321     H177.661z"/>
+		</g>
+		<g>
+			<path fill="#161616" d="M303.178,244.16h-20.124c-2.777,0-5.031-2.252-5.031-5.031v-23.478c0-2.779,2.253-5.031,5.031-5.031     h20.124c2.777,0,5.031,2.252,5.031,5.031v23.478C308.209,241.909,305.955,244.16,303.178,244.16z M288.085,234.099h10.062     v-13.416h-10.062V234.099z"/>
+		</g>
+		<g>
+			<path fill="#161616" d="M200.883,235.34c0,3.02-2.447,5.467-5.467,5.467h-2.483c-3.02,0-5.467-2.447-5.467-5.467v-12.544     c0-3.02,2.447-5.467,5.467-5.467h2.483c3.02,0,5.467,2.447,5.467,5.467V235.34z"/>
+		</g>
+		<g>
+			<path fill="#161616" d="M264.608,235.34c0,3.02-2.447,5.467-5.463,5.467h-2.489c-3.017,0-5.463-2.447-5.463-5.467v-12.544     c0-3.02,2.447-5.467,5.463-5.467h2.489c3.016,0,5.463,2.447,5.463,5.467V235.34z"/>
+		</g>
+		<g>
+			<path fill="#161616" d="M330.327,217.552c1.815-1.955,2.948-4.549,2.948-7.422c0-6.033-4.893-10.933-10.933-10.933     c-6.033,0-10.933,4.9-10.933,10.933c0,4.419,2.64,8.2,6.41,9.928c-0.583,1.125-0.94,2.384-0.94,3.737     c0,4.526,3.668,8.198,8.205,8.198c4.52,0,8.191-3.672,8.191-8.198C333.275,221.277,332.119,219.054,330.327,217.552z"/>
+		</g>
+		<g>
+			<path fill="#161616" d="M305.939,174.601c0,4.526-3.662,8.198-8.191,8.198c-4.526,0-8.202-3.672-8.202-8.198     c0-4.523,3.675-8.198,8.202-8.198C302.277,166.402,305.939,170.077,305.939,174.601z"/>
+		</g>
+		<g>
+			<path fill="#161616" d="M316.879,144.536c0,3.018-2.457,5.465-5.47,5.465c-3.016,0-5.47-2.447-5.47-5.465     c0-3.015,2.453-5.467,5.47-5.467C314.422,139.07,316.879,141.522,316.879,144.536z"/>
+		</g>
+		<g>
+			<path fill="#161616" d="M284.076,166.402c0,3.018-2.443,5.465-5.46,5.465c-3.017,0-5.466-2.447-5.466-5.465     c0-3.018,2.45-5.47,5.466-5.47C281.633,160.933,284.076,163.384,284.076,166.402z"/>
+		</g>
+	</g>
+</g>
+</svg>
+                </div>
+                <h4 className="text-[19px] md:text-xl font-bold text-[#0b1c3a]">Enforcing Contactless Services.</h4>
+              </div>
+
+              <div className="flex space-x-4 items-center">
+                <div className="w-14 h-14 bg-[#0b1c3a] rounded-full">
+                <svg className="w-12 h-12" xmlns="http://www.w3.org/2000/svg" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 400 400">
+<g>
+	<g>
+		<g>
+			<polygon fill="#E5E5E4" points="294.227,119.979 247.573,72.608 214.746,72.608 214.746,99.439 237.575,99.439 278.766,138.029         "/>
+		</g>
+		<g>
+			<path fill="#7FD3B9" d="M214.746,69.254h-76.494l-50.956,79.443v118.439h30.185v-80.495h53.663v-16.089v-5.46v-62.3h43.601     V69.254z M117.482,166.518v-6.695l33.539-51.148v57.842H117.482z"/>
+		</g>
+		<g>
+			<polygon fill="#BBEAD9" points="154.652,69.254 138.253,69.254 87.297,148.697 87.297,267.136 100.712,267.136 100.712,148.697         "/>
+		</g>
+		<g>
+			<path fill="#E5E5E4" d="M114.128,267.136v51.01c0,6.033-5.702,10.923-11.739,10.923l0,0c-6.04,0-11.739-4.89-11.739-10.923     v-51.01H114.128z"/>
+		</g>
+		<g>
+			<path fill="#EFEFEF" d="M100.712,318.146v-51.01H90.651v51.01c0,6.033,4.101,10.923,10.136,10.923     c2.001,0,3.814-0.573,5.425-1.51C102.963,325.656,100.712,322.175,100.712,318.146z"/>
+		</g>
+		<g>
+			<path fill="#FFDA88" d="M314.38,174.202c0,8.506-8.504,12.754-14.347,12.754c-6.908,0-15.41-4.248-15.41-12.754     c0-11.886,15.41-25.505,15.41-25.505S314.38,162.316,314.38,174.202z"/>
+		</g>
+		<g>
+			<path fill="#FFE2A9" d="M295.556,174.202c0-7.012,5.348-14.605,9.751-19.668c-2.85-3.521-5.273-5.837-5.273-5.837     s-15.41,13.619-15.41,25.505c0,8.506,8.503,12.754,15.41,12.754c1.592,0,3.378-0.347,5.144-0.979     C300.06,184.293,295.556,180.389,295.556,174.202z"/>
+		</g>
+		<g>
+			<rect x="214.746" y="72.608" fill="#EFEFEF" width="13.416" height="26.831"/>
+		</g>
+	</g>
+	<g>
+		<g>
+			<path fill="#161616" d="M278.766,144.318c-1.264,0-2.486-0.475-3.419-1.34l-39.744-36.831h-22.533     c-2.779,0-5.031-2.253-5.031-5.031V74.285c0-2.778,2.252-5.031,5.031-5.031h34.504c1.331,0,2.61,0.527,3.552,1.467l46.654,46.533     c1.847,1.844,1.98,4.792,0.306,6.793l-15.461,18.47c-0.886,1.058-2.165,1.703-3.541,1.792     C278.977,144.314,278.871,144.318,278.766,144.318z M218.1,96.085h19.475c1.268,0,2.489,0.478,3.42,1.34l37.309,34.574     l9.105-10.877l-41.916-41.806H218.1V96.085z"/>
+		</g>
+		<g>
+			<path fill="#161616" d="M300.033,191.987c-10.049,0-20.441-6.652-20.441-17.785c0-13.756,15.358-27.726,17.11-29.275     c1.955-1.723,4.903-1.674,6.795,0.121c1.629,1.546,15.915,15.502,15.915,29.154C319.411,185.187,309.353,191.987,300.033,191.987     z M299.91,155.893c-4.379,4.713-10.257,12.368-10.257,18.309c0,5.837,6.993,7.723,10.38,7.723c3.148,0,9.317-2.332,9.317-7.723     C309.349,168.175,304.027,160.649,299.91,155.893z"/>
+		</g>
+		<g>
+			<path fill="#161616" d="M115.805,273.844H85.62c-2.779,0-5.031-2.254-5.031-5.031V148.697c0-1.006,0.301-1.988,0.865-2.82     l52.633-77.766c0.935-1.382,2.496-2.211,4.166-2.211h74.817c2.779,0,5.031,2.253,5.031,5.031v33.539     c0,2.778-2.252,5.031-5.031,5.031h-38.57v40.247c0,2.778-2.252,5.031-5.031,5.031s-5.031-2.253-5.031-5.031V104.47     c0-2.777,2.252-5.031,5.031-5.031h38.57V75.962h-67.117L90.651,150.24v113.543h20.124v-75.464c0-2.777,2.252-5.031,5.031-5.031     h48.632v-13.416c0-2.777,2.252-5.031,5.031-5.031s5.031,2.254,5.031,5.031v18.447c0,2.778-2.252,5.031-5.031,5.031h-48.632     v75.464C120.836,271.591,118.584,273.844,115.805,273.844z M149.344,173.226h-33.539c-2.779,0-5.031-2.253-5.031-5.031v-8.372     c0-0.979,0.287-1.939,0.824-2.758l33.539-51.148c1.218-1.86,3.514-2.692,5.647-2.063c2.131,0.639,3.591,2.597,3.591,4.821v59.519     C154.375,170.972,152.124,173.226,149.344,173.226z M120.836,163.164h23.478v-37.643l-23.478,35.806V163.164z"/>
+		</g>
+		<g>
+			<path fill="#161616" d="M100.712,334.1c-9.091,0-16.77-7.307-16.77-15.954v-7.409c0-2.777,2.252-5.031,5.031-5.031     s5.031,2.253,5.031,5.031v7.409c0,3.03,3.261,5.892,6.708,5.892c3.447,0,6.708-2.863,6.708-5.892v-44.302H94.005v10.062     c0,2.777-2.252,5.031-5.031,5.031s-5.031-2.253-5.031-5.031v-15.093c0-2.777,2.252-5.031,5.031-5.031h23.478     c2.779,0,5.031,2.254,5.031,5.031v49.333C117.482,326.793,109.803,334.1,100.712,334.1z"/>
+		</g>
+	</g>
+</g>
+</svg>
+                </div>
+                <h4 className="text-[19px] md:text-xl font-bold text-[#0b1c3a]">Frequent Sanitization of Hight touch Services.</h4>
+              </div>
+              <div className="flex space-x-4 items-center">
+                <div className="w-14 h-14 bg-[#0b1c3a] rounded-full">
+                <svg className="w-12 h-12" xmlns="http://www.w3.org/2000/svg"  version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 400 400">
+<g>
+	<g>
+		<g>
+			<rect x="70.87" y="96.028" fill="#E5E5E4" width="144.219" height="184.467"/>
+		</g>
+		<g>
+			<rect x="70.87" y="96.028" fill="#EFEFEF" width="13.416" height="184.467"/>
+		</g>
+		<g>
+			<path fill="#7FD3B9" d="M299.003,188.484l-38.944-38.793h-44.97v93.91h50.43c0-6.708,7.343-16.396,16.4-16.396     c9.056,0,16.406,9.689,16.406,16.396h34.152v-21.794C332.477,221.807,331.796,188.484,299.003,188.484z"/>
+		</g>
+		<g>
+			<path fill="#C1C1C1" d="M298.325,243.673c0,9.056-7.35,16.393-16.406,16.393c-9.056,0-16.4-7.337-16.4-16.393     c0-9.063,7.343-16.403,16.4-16.403C290.976,227.271,298.325,234.61,298.325,243.673z"/>
+		</g>
+		<g>
+			<path fill="#FFDA88" d="M287.386,243.673c0,3.02-2.444,5.463-5.466,5.463c-3.02,0-5.46-2.443-5.46-5.463     c0-3.027,2.44-5.47,5.46-5.47C284.942,238.203,287.386,240.647,287.386,243.673z"/>
+		</g>
+		<g>
+			<path fill="#FFDA88" d="M315.708,206.708v16.77h16.77c0,0,0.419-6.708-3.685-16.77H315.708z"/>
+		</g>
+		<g>
+			<path fill="#D1D1D1" d="M276.459,243.673c0-7.137,4.575-13.141,10.926-15.394c-1.716-0.612-3.537-1.008-5.466-1.008     c-9.056,0-16.4,7.34-16.4,16.403c0,9.056,7.343,16.393,16.4,16.393c1.929,0,3.75-0.39,5.466-1.002     C281.035,256.811,276.459,250.804,276.459,243.673z"/>
+		</g>
+		<g>
+			<rect x="70.87" y="280.495" fill="#C1C1C1" width="144.219" height="20.124"/>
+		</g>
+		<g>
+			<path fill="#FE6F80" d="M157.945,136.278c2.135-2.132,5.591-2.132,7.723,0l3.862,3.868l15.466-15.46     c2.136-2.132,5.591-2.132,7.73,0c2.139,2.135,2.139,5.594,0,7.73l-19.324,19.324c-2.142,2.139-5.594,2.139-7.733,0l-7.723-7.73     C155.802,141.876,155.802,138.424,157.945,136.278z"/>
+		</g>
+		<g>
+			<path fill="#FE6F80" d="M157.945,180.01c2.135-2.132,5.591-2.132,7.723,0l3.862,3.862l15.466-15.46     c2.136-2.129,5.591-2.129,7.73,0c2.139,2.142,2.139,5.594,0,7.733l-19.324,19.324c-2.142,2.139-5.594,2.139-7.733,0l-7.723-7.733     C155.802,185.605,155.802,182.146,157.945,180.01z"/>
+		</g>
+		<g>
+			<path fill="#FE6F80" d="M157.945,229.203c2.135-2.132,5.591-2.132,7.723,0l3.862,3.868l15.466-15.46     c2.136-2.136,5.591-2.136,7.73,0c2.139,2.139,2.139,5.594,0,7.73l-19.324,19.321c-2.142,2.142-5.594,2.142-7.733,0l-7.723-7.73     C155.802,234.797,155.802,231.342,157.945,229.203z"/>
+		</g>
+		<g>
+			<rect x="70.87" y="280.495" fill="#D1D1D1" width="13.416" height="20.124"/>
+		</g>
+		<g>
+			<rect x="215.089" y="149.691" fill="#BBEAD9" width="13.416" height="93.91"/>
+		</g>
+		<g>
+			<polygon fill="#E5E5E4" points="221.797,188.261 221.797,166.461 276.459,166.461 299.003,188.484    "/>
+		</g>
+		<g>
+			<rect x="221.797" y="166.461" fill="#EFEFEF" width="6.708" height="22.023"/>
+		</g>
+		<g>
+			<rect x="84.286" y="146.337" fill="#C1C1C1" width="57.017" height="10.062"/>
+		</g>
+		<g>
+			<rect x="84.286" y="126.492" fill="#C1C1C1" width="36.893" height="9.783"/>
+		</g>
+		<g>
+			<rect x="84.286" y="189.938" fill="#C1C1C1" width="57.017" height="10.062"/>
+		</g>
+		<g>
+			<rect x="84.286" y="170.093" fill="#C1C1C1" width="36.893" height="9.783"/>
+		</g>
+		<g>
+			<rect x="84.286" y="236.893" fill="#C1C1C1" width="57.017" height="10.062"/>
+		</g>
+		<g>
+			<rect x="84.286" y="217.048" fill="#C1C1C1" width="36.893" height="9.783"/>
+		</g>
+	</g>
+	<g>
+		<g>
+			<path fill="#161616" d="M330.8,250.309h-32.475c-2.777,0-5.031-2.253-5.031-5.031c0-3.901-1.107-12.977-11.375-12.977     c-11.238,0-11.369,12.846-11.369,12.977c0,2.777-2.254,5.031-5.031,5.031h-16.891c-2.777,0-5.031-2.253-5.031-5.031     s2.253-5.031,5.031-5.031h12.41c1.775-8.372,7.989-18.008,20.88-18.008c12.63,0,19.311,8.418,21.001,18.008h22.849v-18.44     c-0.007-2.817-0.832-27.454-27.604-27.454c-1.33,0-2.607-0.527-3.551-1.467l-36.631-36.487h-39.54v83.849h10.062     c2.777,0,5.031,2.253,5.031,5.031s-2.253,5.031-5.031,5.031h-15.093c-2.777,0-5.031-2.253-5.031-5.031v-93.91     c0-2.777,2.253-5.031,5.031-5.031h46.647c1.33,0,2.607,0.527,3.55,1.467l36.674,36.53c10.14,0.403,18.398,3.747,24.575,9.954     c10.926,10.979,10.976,26.874,10.972,27.542v23.448C335.831,248.056,333.578,250.309,330.8,250.309z"/>
+		</g>
+		<g>
+			<path fill="#161616" d="M298.325,193.292h-74.851c-2.777,0-5.031-2.253-5.031-5.031v-20.124c0-2.777,2.253-5.031,5.031-5.031     h52.985c1.261,0,2.479,0.475,3.406,1.33l21.866,20.124c1.526,1.402,2.034,3.6,1.281,5.529     C302.259,192.021,300.399,193.292,298.325,193.292z M228.505,183.23h56.925l-10.933-10.062h-45.992V183.23z"/>
+		</g>
+		<g>
+			<path fill="#161616" d="M281.919,265.097c-11.817,0-21.431-9.61-21.431-21.424c0-11.817,9.613-21.434,21.431-21.434     c11.821,0,21.437,9.616,21.437,21.434C303.356,255.487,293.74,265.097,281.919,265.097z M281.919,232.301     c-6.269,0-11.369,5.103-11.369,11.372c0,6.266,5.1,11.362,11.369,11.362c6.272,0,11.375-5.096,11.375-11.362     C293.294,237.404,288.191,232.301,281.919,232.301z"/>
+		</g>
+		<g>
+			<path fill="#161616" d="M287.386,243.673c0,3.02-2.444,5.463-5.466,5.463c-3.02,0-5.46-2.443-5.46-5.463     c0-3.027,2.44-5.47,5.46-5.47C284.942,238.203,287.386,240.647,287.386,243.673z"/>
+		</g>
+		<g>
+			<path fill="#161616" d="M330.8,230.185h-16.77c-2.777,0-5.031-2.253-5.031-5.031v-16.77c0-2.778,2.253-5.031,5.031-5.031h12.983     c2.044,0,3.884,1.238,4.658,3.131c4.399,10.779,4.192,18.106,4.153,18.908C335.697,228.076,333.486,230.185,330.8,230.185z      M319.061,220.124h6.213c-0.327-1.815-0.865-4.088-1.752-6.708h-4.461V220.124z"/>
+		</g>
+		<g>
+			<path fill="#161616" d="M213.412,307.326H69.193c-2.777,0-5.031-2.253-5.031-5.031v-20.124c0-2.777,2.253-5.031,5.031-5.031     h144.219c2.778,0,5.031,2.253,5.031,5.031v20.124C218.443,305.073,216.19,307.326,213.412,307.326z M74.224,297.264h134.158     v-10.062H74.224V297.264z"/>
+		</g>
+		<g>
+			<rect x="84.286" y="146.337" fill="#161616" width="57.017" height="10.062"/>
+		</g>
+		<g>
+			<path fill="#161616" d="M157.945,136.278c2.135-2.132,5.591-2.132,7.723,0l3.862,3.868l15.466-15.46     c2.136-2.132,5.591-2.132,7.73,0c2.139,2.135,2.139,5.594,0,7.73l-19.324,19.324c-2.142,2.139-5.594,2.139-7.733,0l-7.723-7.73     C155.802,141.876,155.802,138.424,157.945,136.278z"/>
+		</g>
+		<g>
+			<path fill="#161616" d="M157.945,180.01c2.135-2.132,5.591-2.132,7.723,0l3.862,3.862l15.466-15.46     c2.136-2.129,5.591-2.129,7.73,0c2.139,2.142,2.139,5.594,0,7.733l-19.324,19.324c-2.142,2.139-5.594,2.139-7.733,0l-7.723-7.733     C155.802,185.605,155.802,182.146,157.945,180.01z"/>
+		</g>
+		<g>
+			<path fill="#161616" d="M157.945,229.203c2.135-2.132,5.591-2.132,7.723,0l3.862,3.868l15.466-15.46     c2.136-2.136,5.591-2.136,7.73,0c2.139,2.139,2.139,5.594,0,7.73l-19.324,19.321c-2.142,2.142-5.594,2.142-7.733,0l-7.723-7.73     C155.802,234.797,155.802,231.342,157.945,229.203z"/>
+		</g>
+		<g>
+			<path fill="#161616" d="M213.412,287.202H69.193c-2.777,0-5.031-2.254-5.031-5.031V97.705c0-2.777,2.253-5.031,5.031-5.031     h21.801c2.777,0,5.031,2.253,5.031,5.031c0,2.778-2.253,5.031-5.031,5.031h-16.77v174.405h134.158V102.736h-93.91     c-2.778,0-5.031-2.253-5.031-5.031c0-2.777,2.253-5.031,5.031-5.031h98.941c2.778,0,5.031,2.253,5.031,5.031v184.467     C218.443,284.949,216.19,287.202,213.412,287.202z"/>
+		</g>
+		<g>
+			<rect x="84.286" y="126.492" fill="#161616" width="36.893" height="9.783"/>
+		</g>
+		<g>
+			<rect x="84.286" y="189.938" fill="#161616" width="57.017" height="10.062"/>
+		</g>
+		<g>
+			<rect x="84.286" y="170.093" fill="#161616" width="36.893" height="9.783"/>
+		</g>
+		<g>
+			<rect x="84.286" y="236.893" fill="#161616" width="57.017" height="10.062"/>
+		</g>
+		<g>
+			<rect x="84.286" y="217.048" fill="#161616" width="36.893" height="9.783"/>
+		</g>
+	</g>
+</g>
+</svg>
+                </div>
+                <h4 className="text-[19px] md:text-xl font-bold text-[#0b1c3a]">Promoting pickUp & Drop Service.</h4>
+              </div>
+
+            </div>
+            {/* <p className="max-w-3xl md:max-w-4xl text-[#0b1c3a] text-lg">Royal Services est un garage moderne offrant un entretien, des réparations de véhicules de haute qualité pour toutes les marques et tous les modèles.</p>
             <div className="font-semibold text-white bg-orange-600 rounded-md px-8 flex w-[200px] py-4 lg:mt-40 text-md cursor-pointer">
               <span className="shadow-2xl shadow-orange-600/20">En Savoir Plus </span>
-            </div>
+            </div> */}
           
         </div>
-        <div></div>
+       
     </div>
    </div>
+    </div>
 
-    <div className="max-w-6xl mx-auto grid sm:grid-cols-2  gap-10 md:gap-16 items-center min-h-96 pt-36 px-8 mb-32" id="">
-       <div className="h-60 w-full rounded-md" style={{backgroundImage:`url('./bg2.jpg')`,backgroundRepeat:'no-repeat', backgroundSize:'cover',backgroundPosition:'center'}} onClick ={()=>setModalOn(!modalOn)}>
-         Dire quelque chose
-         {modalOn && <Modal setModalOn={setModalOn}/>}
-         
-       </div>
-       <div className="flex flex-col space-y-8 py-4">
-         <h2 className="font-bold text-4xl text-[#0b0b3a] mb-8 sm:mb-2">Profitez de votre
-Service de voiture</h2>
-         <p className="text-gray-500 text-base">Entretien, entretien et réparation de véhicules de haute qualité pour toutes les marques et tous les modèles. À une qualité abordable garantie avec une touche personnelle. Par l’une des plus grandes chaînes d’ateliers indépendants au monde. C’est Royal Car Service!</p>
+     
 
-         <p className="font-semibold text-orange-600 mt-24 text-md">About Royal Car Service</p>
-       </div>
-    
-     </div>
+    <div className="max-w-6xl mx-auto md:mt-14" id="services" name="#services">
+    <h2 className="text-3xl lg:text-4xl font-bold mb-8 text-left px-3 md:px-0 md:text-center text-[#0b1c3a]">Nos services</h2>
+    <p className="px-3 max-w-3xl mx-auto text-left md:text-center text-gray-500">Chez Royal Car Service, nous offrons une gamme complète de services pour tout ce dont votre voiture a besoin. Jetez un coup d’œil à nos services pour en savoir plus.</p>
 
-    <div className="max-w-6xl mx-auto mt-14" id="services" name="#services">
-    <h2 className="text-3xl lg:text-4xl font-bold text-[#0b0b3a] mb-8 text-left px-8 md:px-0 md:text-center text-[#0b0b3a]">Nos services</h2>
-    <p className="px-8 max-w-3xl mx-auto text-left md:text-center text-gray-500">Chez Royal Car Service, nous offrons une gamme complète de services pour tout ce dont votre voiture a besoin. Jetez un coup d’œil à nos services pour en savoir plus.</p>
+    <div className="grid lg:px-8 mt-20 md:mt-32">
+        <h2 className="text-xl text-[#0b1c3a] font-bold mb-10 px-3 md:px-8">Assurance pour Automobile, Maison, Voyage & plus.</h2>
+      <div className="px-3 md:px-8">
+        <div className="grid md:grid-cols-2 gap-16 justify-between items-center mb-16">
+          <div className="h-80 max-w-3xl">
+          <p className="text-gray-500 mb-8 max-w-2xl">When you buy insurance from us, you get more than just a financial safety. You also get our promise to simplify complex insurance terms and conditions, quick stress-free claims.  </p>
+          <p className="text-gray-500 mb-8 max-w-2xl">When you buy insurance from us, you get more than just a financial safety. You also get our promise to simplify complex insurance terms and conditions, quick stress-free claims.  </p>
 
-    <div className="grid lg:px-8 mt-32">
-        <h2 className="text-xl text-orange-600 font-bold text-left md:text-center mb-10 px-8 md:px-0">Assurance Automobile</h2>
-      <div className="grid gap-4 md:grid-cols-2 px-8">
-        <div className=" flex flex-col space-y-4 mb-6">
-            {
-              Data1.map(item=>(
-                <p key={item.id} className="flex items-center space-x-2">
-                  <span className="w-3 h-3 rounded-full bg-orange-600"></span>  <span className="text-base font-semibold text-[#0b0b3a]">{item.title}</span>
-                </p>
-              ))
-            }
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="h-44 w-44 md:h-48 md:w-48 shadow-xl rounded-xl -mt-6 p-3 border-l-8 border-orange-600">
+              <span>☎️</span>
+              <h4 className="text-semibold text-[#0b1c3a] mb-5">Plus de 500</h4>
+              <p className="text-gray-500 text-sm md:text-base">les clients nous font confiance et ont souscrit leur assurance chez Royal Services</p>
+            </div>
+            <div className="h-44 w-44 md:h-48 md:w-48  shadow-xl rounded-xl p-3 border-l-8 border-orange-600">
+              <span>👨🏾‍💼</span>
+            <h4 className="text-semibold text-[#0b1c3a] mb-5">300 + assureurs</h4>
+              <p className="text-gray-500 text-sm md:text-base"> afin que vous puissiez comparer facilement et de manière transparente</p>
+            </div>
+            <div className="h-44 w-44 md:h-48 md:w-48  shadow-xl rounded-xl -mt-6 p-3 border-l-8 border-orange-600">
+            <span>💳</span>
+            <h4 className="text-semibold text-[#0b1c3a] mb-5">Meilleur prix</h4>
+              <p className="text-gray-500 text-sm md:text-base">pour tous les régimes d’assurance disponibles en ligne</p>
+            </div>
+            <div className="h-44 w-44 md:h-48 md:w-48  shadow-xl rounded-xl p-3 border-l-8 border-orange-600">
+              <span>🧒🏾</span>
+            <h4 className="text-semibold text-[#0b1c3a] mb-5">Plus de 500</h4>
+              <p className="text-gray-500 text-sm md:text-base">support built in with every policy for help, when you need it the most</p>
+            </div>
+          </div>
         </div>
-        <div className="h-80 rounded-md bg-[#0b0b3a]" style={{backgroundImage:`url('./car.jpeg')`,backgroundRepeat:'no-repeat', backgroundSize:'cover',backgroundPosition:'center'}}>
-
-        </div>
+        
+        
+        <Assurance/>
+        
       </div>
     </div>
 
     <div className="grid mt-32">
-      <h2 className="text-xl text-orange-600 font-bold text-left md:text-center mb-10 px-8 md:px-0">Lavage et Mechanic modern</h2>
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 px-4 md:px-0">
-        {Data4.map(item=>(
-          <div className="flex items-start space-x-4" key={item.id}>
-            <div className="hidden md:block h-40 w-40">
-                {item.icon}
-            </div>
-            <div className="flex flex-col space-y-2 md:space-y-6">
-              <h4 className="font-semibold text-xl text-[#0b0b3a]">{item.title}</h4>
-              <p className="text-gray-500">{item.description}</p>
-
-            </div>
-          </div>
-        ))}
+      <h2 className="text-xl text-[#0b1c3a] font-bold mb-10 md:px-8 px-3">Lavage et Mechanic modern</h2>
+      <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 px-3 md:px-12">
+        {/* {Data4.map(item=>( */}
+         <Mechanic_Service item={Data4[0]} margin=''/>
+         
+          <Mechanic_Service item={Data4[1]} margin=""/>
+         
+         
+         <Mechanic_Service item={Data4[2]} margin=""/>
+         <Mechanic_Service item={Data4[3]} margin=""/>
+         <Mechanic_Service item={Data4[4]} margin=""/>
+         <Mechanic_Service item={Data4[5]} margin=""/>
+        {/* ))} */}
       </div>
     </div>
 
@@ -213,7 +546,7 @@ Service de voiture</h2>
     </div>
     
     <div className="max-w-2xl md:max-w-4xl mx-8 sm:mx-auto md:h-80 rounded-xl bg-blue-900 grid sm:grid-cols-2 overflow-hidden mt-40" id="contact" name="#contacts">
-    <div className="h-full bg-[#0b0b3a] p-7">
+    <div className="h-full bg-[#0b1c3a] p-7">
         <p className="text-center mb-10 md:text-left text-gray-100 mt-6">Royal Car Service, les experts automobiles. C’est la bonne adresse pour une qualité de service exceptionnelle pour votre voiture. Que vous cherchiez des conseils, <span className="text-orange-600 font-semibold">064839857</span> travaux de réparation ou de service, nous pouvons offrir le package complet.</p>
         <div className="max-w-[220px] flex items-center space-x-3 mx-auto md:mx-0 mb-5 px-6 py-4 bg-orange-600 text-gray-200 font-semibold rounded-md text-center shadow-2xl shadow-orange-600/20">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -226,40 +559,41 @@ Service de voiture</h2>
     <div className="px-4 py-6 h-80 -order-1 md:order-1" style={{backgroundImage:`url('./bg.jpg')`,backgroundRepeat:'no-repeat', backgroundSize:'cover',backgroundPosition:'center'}}></div>
     </div>
 
-     <div className="max-w-6xl mx-auto px-8 md:pt-32 pb-20 mt-20 mb-28" id="about" name="#about">
+    <div className="max-w-6xl mx-auto px-3 md:px-8 md:pt-32 pb-20 mt-20 mb-28" id="about" name="#about">
       
-      <div className="grid md:grid-cols-2 content-between gap-14 mt-16">
-        <div className="h-[350px] w-full rounded-md -order-1" style={{backgroundImage:`url('./about.jpg')`,backgroundRepeat:'no-repeat', backgroundSize:'cover',backgroundPosition:'center'}}></div>
-        <div>
-          <h2 className="font-bold text-3xl mb-4 md:mb-8 text-[#0b0b3a]">Pourquoi choisir Royal Services</h2>
-          <p className="mb-12 text-gray-500 text-base">Royal Car Service, les experts automobiles. C’est la bonne adresse pour une qualité de service exceptionnelle pour votre voiture.</p>
-          {
-            SkillsData.map(skills=>(
-            <div className="bg-white rounded-md shadow-xl mb-4 border-l-4 border-orange-600" key={skills.id}>
-              <div className="flex p-4 items-center justify-between cursor-pointer">
-                <span className="font-semibold text-[#0b0b3a]">{skills.title}</span>
-                <span onClick={()=>handleSetIndex(skills.id)} className="transition-all duration-500">
-                  {Index == skills.id ?<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-  <path strokeLinecap="round" strokeLinejoin="round" d="M18 12H6" />
-  </svg>:<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-orange-600 transition-all duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                  </svg>
-                  }
-                </span>
-              </div>
-              { Index == skills.id &&  <div className=" p-4 rounded-md text-gray-500">{skills.answer}</div>}
+    <div className="grid md:grid-cols-2 content-between gap-14 mt-16">
+      <div className="h-[350px] w-full rounded-md -order-1" style={{backgroundImage:`url('./about.jpg')`,backgroundRepeat:'no-repeat', backgroundSize:'cover',backgroundPosition:'center'}}></div>
+      <div>
+        <h2 className="font-bold text-3xl mb-4 md:mb-8 text-orange-600">Pourquoi choisir Royal Services</h2>
+        <p className="mb-12 text-gray-500 text-base">Royal Car Service, les experts automobiles. C’est la bonne adresse pour une qualité de service exceptionnelle pour votre voiture.</p>
+        {
+          SkillsData.map(skills=>(
+          <div className="bg-[#0b1c3a] rounded-md shadow-xl mb-4 border-l-8 border-orange-600" key={skills.id}>
+            <div className="flex p-4 items-center justify-between cursor-pointer">
+              <span className="font-semibold text-white">{skills.title}</span>
+              <span onClick={()=>handleSetIndex(skills.id)} className="transition-all duration-500">
+                {Index == skills.id ?<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+<path strokeLinecap="round" strokeLinejoin="round" d="M18 12H6" />
+</svg>:<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-orange-600 transition-all duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                </svg>
+                }
+              </span>
             </div>
-            ))
-          }
-         
-        </div>
+            { Index == skills.id &&  <div className=" p-4 rounded-md text-gray-500">{skills.answer}</div>}
+          </div>
+          ))
+        }
+       
       </div>
-      
     </div>
+    
+  </div>
+    <Footer/>
+    
     </>
   )
 }
-
 
 const Data4 = [
   {id:1, title:'Entretien des freins antiblocage', description:'L’entretien périodique de la voiture est quelque chose que tout propriétaire de voiture responsable fait. Mais vous devez savoir que vous pouvez faire pleinement confiance aux compétences et à l’intégrité du fournisseur que vous avez choisi.',details:[
@@ -650,6 +984,8 @@ const Data4 = [
                       s8.36-18.68,18.68-18.68c10.32,0,18.68,8.36,18.68,18.68S305.93,315,295.61,315z"></path>
                       </svg>},
 ]
+
+
 
 
 

@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+import Mechanic_Service from '../components/Mechanic_Service';
 
 const Services = () => {
 
@@ -15,48 +16,39 @@ const Services = () => {
     {id: 9, title:'Voyage accident rapatriement'},
   ]
   return (
-    <section className="max-w-6xl mx-auto mt-14" id="services" name="#services">
-    <h2 className="text-3xl lg:text-4xl font-bold text-[#0b0b3a] mb-8 text-center text-[#0b0b3a]">Nos services</h2>
-    <p className="px-8 max-w-3xl mx-auto text-center text-gray-500">Chez Royal Car Service, nous offrons une gamme complète de services pour tout ce dont votre voiture a besoin. Jetez un coup d’œil à nos services pour en savoir plus.</p>
+    <div className="max-w-6xl mx-auto mt-14" id="services" name="#services">
+    <h2 className="text-3xl lg:text-4xl font-bold mb-8 text-left px-8 md:px-0 md:text-center text-[#0b1c3a]">Nos services</h2>
+    <p className="px-8 max-w-3xl mx-auto text-left md:text-center text-gray-500">Chez Royal Car Service, nous offrons une gamme complète de services pour tout ce dont votre voiture a besoin. Jetez un coup d’œil à nos services pour en savoir plus.</p>
 
     <div className="grid lg:px-8 mt-32">
-        <h2 className="text-lg text-[#0b0b3a] font-bold text-center mb-10">Assurance Automobile</h2>
+        <h2 className="text-xl text-orange-600 font-bold text-left md:text-center mb-10 px-8 md:px-0">Assurance Automobile</h2>
       <div className="grid gap-4 md:grid-cols-2 px-8">
-        <div className=" flex flex-col space-y-4">
+        <div className=" flex flex-col space-y-4 mb-6">
             {
               Data1.map(item=>(
                 <p key={item.id} className="flex items-center space-x-2">
-                  <span className="w-3 h-3 rounded-full bg-orange-600"></span>  <span className="text-xl font-semibold text-[#0b0b3a]">{item.title}</span>
+                  <span className="w-3 h-3 rounded-full bg-orange-600"></span>  <span className="text-base font-semibold text-[#0b0b3a]">{item.title}</span>
                 </p>
               ))
             }
         </div>
-        <div className="h-80 rounded-md bg-[#0b0b3a]" style={{backgroundImage:`url('./car.jpeg')`,backgroundRepeat:'no-repeat', backgroundSize:'cover',backgroundPosition:'center'}}>
+        <div className="h-80 rounded-md bg-[#0b1c3a]" style={{backgroundImage:`url('./car.jpeg')`,backgroundRepeat:'no-repeat', backgroundSize:'cover',backgroundPosition:'center'}}>
 
         </div>
       </div>
     </div>
 
-    <div className="grid lg:px-8 mt-32">
-      <h2 className="text-lg text-[#0b0b3a] font-bold text-center mb-10">Lavage et Mechanic modern</h2>
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 px-8">
+    <div className="grid mt-32">
+      <h2 className="text-xl text-orange-600 font-bold text-left md:text-center mb-10 px-8 md:px-0">Lavage et Mechanic modern</h2>
+      <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 px-4 md:px-14">
         {Data4.map(item=>(
-          <div className="flex items-start space-x-4">
-            <div className="hidden md:flex h-40 w-40">
-                {item.icon}
-            </div>
-            <div className="flex flex-col space-y-6">
-              <h4 className="font-semibold text-xl text-[#0b0b3a]">{item.title}</h4>
-              <p className="text-gray-500">{item.description}</p>
-
-            </div>
-          </div>
+         <Mechanic_Service key={item.id} item={item}/>
         ))}
       </div>
     </div>
 
 
-  </section>
+    </div>
   )
 }
 
