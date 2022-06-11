@@ -2,6 +2,13 @@ import React,{useState} from 'react'
 import Sticky from 'react-stickynode'
 import { Link, Button, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 import Image from 'next/image'
+import {motion} from 'framer-motion'
+import { Swiper, SwiperSlide } from 'swiper/react';
+// import "~slick-carousel/slick/slick.css"; 
+// import "~slick-carousel/slick/slick-theme.css";
+
+// Import Swiper styles
+import 'swiper/css';
 
 import Logo from '../components/Logo'
 import Navbar from '../components/Navbar'
@@ -16,6 +23,7 @@ import Skills from '../section/Skills'
 import Mechanic_Service from '../components/Mechanic_Service';
 import Assurance from '../components/Assurance'
 import Modal from '../components/modal';
+import Slider from '../components/Slider'
 
 
 export default function Home() {
@@ -64,14 +72,14 @@ export default function Home() {
   
   
   return (
-    <>
+    <div className="bg-gray-100">
     
     
      
     <div>
-      <Sticky  innerActiveClass="shadow-md transition-shadow duration-500">
-        <div  className="w-full bg-white" id="home">
-        <div className=" max-w-6xl mx-auto  w-full md:space-x-24 lg:space-x-40 flex items-center justify-between py-4 bg-white px-4 md:px-0">
+      <Sticky  innerActiveClass="shadow-md transition-shadow duration-500" innerZ={1000}>
+        <div  className="w-full bg-gray-1100" id="home">
+        <div className=" max-w-6xl mx-auto  w-full md:space-x-24 lg:space-x-40 flex items-center justify-between py-4 bg-gray-100 px-4 md:px-0">
             <h1 className="text-2xl font-bold text-[#0b1c3a]">Royal<span className="text-orange-600">Services</span></h1>
         
             <div className="hidden float-right md:flex space-x-12 text-text-primary">
@@ -111,7 +119,7 @@ export default function Home() {
       </Sticky>
      <div id="home" name="#home" className="w-full h-[85vh]">
     
-     <ul className="md:hidden fixed bottom-0 left-0 bg-orange-600 w-full flex items-center justify-around px-6 py-5 text-white rounded-t-l-md rounded-t-r-md shadow-xl">
+     {/* <ul className="md:hidden fixed bottom-0 left-0 bg-orange-600 w-full flex items-center justify-around px-6 py-5 text-white rounded-t-l-md rounded-t-r-md shadow-xl">
                 {NavItems.map(item=>(
                     <Link 
                 
@@ -131,12 +139,14 @@ export default function Home() {
                         <span>{item.title}</span>
                     </Link>
                 ))}
-            </ul> 
-    <div className="max-w-6xl mx-auto grid md:grid-cols-2 pt-24">
-        <div></div>
+            </ul>  */}
+    <div className="max-w-6xl mx-auto grid justify-center md:grid-cols-2 pt-24">
+        <div className="px-3 md:px-0">
+          <img src="./b.svg" alt="" className="w-full h-auto -mt-40" />
+        </div>
         <div className="flex flex-col space-y-5 px-3 md:px-0">
             <h1 className="max-w-5xl text-4xl md:text-5xl font-bold text-[#0b1c3a] mb-6">Des services de qualité pour vos voitures</h1>
-            <div className="grid space-y-6">
+            <div className="hidden md:grid space-y-6">
               <div className="flex space-x-4 items-center">
                 <div className="w-14 h-14 bg-[#0b1c3a] rounded-full">
                 <svg className="w-12 h-12" xmlns="http://www.w3.org/2000/svg" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 400 400">
@@ -469,95 +479,77 @@ export default function Home() {
               </div>
 
             </div>
-            {/* <p className="max-w-3xl md:max-w-4xl text-[#0b1c3a] text-lg">Royal Services est un garage moderne offrant un entretien, des réparations de véhicules de haute qualité pour toutes les marques et tous les modèles.</p>
-            <div className="font-semibold text-white bg-orange-600 rounded-md px-8 flex w-[200px] py-4 lg:mt-40 text-md cursor-pointer">
-              <span className="shadow-2xl shadow-orange-600/20">En Savoir Plus </span>
-            </div> */}
+          
           
         </div>
        
     </div>
-   </div>
     </div>
+    </div>
+   
 
      
 
-    <div className="max-w-6xl mx-auto md:mt-14" id="services" name="#services">
-    <h2 className="text-3xl lg:text-4xl font-bold mb-8 text-left px-3 md:px-0 md:text-center text-[#0b1c3a]">Nos services</h2>
+    <div className="max-w-6xl mx-auto mt-10 md:mt-24" id="services" name="#services">
+    <h2 className="text-3xl lg:text-4xl font-bold mb-8 text-left px-3 md:px-0 md:text-center text-orange-600">Nos services</h2>
     <p className="px-3 max-w-3xl mx-auto text-left md:text-center text-gray-500">Chez Royal Car Service, nous offrons une gamme complète de services pour tout ce dont votre voiture a besoin. Jetez un coup d’œil à nos services pour en savoir plus.</p>
 
     <div className="grid lg:px-8 mt-20 md:mt-32">
-        <h2 className="text-xl text-[#0b1c3a] font-bold mb-10 px-3 md:px-8">Assurance pour Automobile, Maison, Voyage & plus.</h2>
+        <h2 className="text-xl text-orange-600 font-bold mb-10 px-3 md:px-8">Assurance pour Automobile, Maison, Voyage & plus.</h2>
       <div className="px-3 md:px-8">
-        <div className="grid md:grid-cols-2 gap-16 justify-between items-center mb-16">
-          <div className="h-80 max-w-3xl">
+        <div className="grid md:grid-cols-2 gap-16 justify-between items-start mb-10 md:mb-16">
+          <div className="max-w-3xl">
           <p className="text-gray-500 mb-8 max-w-2xl">When you buy insurance from us, you get more than just a financial safety. You also get our promise to simplify complex insurance terms and conditions, quick stress-free claims.  </p>
-          <p className="text-gray-500 mb-8 max-w-2xl">When you buy insurance from us, you get more than just a financial safety. You also get our promise to simplify complex insurance terms and conditions, quick stress-free claims.  </p>
+          <Assurance/>
+          {/* <p className="text-gray-500 mb-8 max-w-2xl">When you buy insurance from us, you get more than just a financial safety. You also get our promise to simplify complex insurance terms and conditions, quick stress-free claims.  </p> */}
 
           </div>
-          <div className="grid grid-cols-2 gap-4">
-            <div className="h-44 w-44 md:h-48 md:w-48 shadow-xl rounded-xl -mt-6 p-3 border-l-8 border-orange-600">
+          <div className="grid grid-cols-2 gap-4 max-w-6xl mx-auto">
+            <div className="bg-white h-40 w-[166px] md:h-44 md:w-[166px] lg:h-48 lg md:w-48 shadow-xl rounded-xl -mt-6 p-2 md:p-3 border-l-8 border-orange-600">
               <span>☎️</span>
-              <h4 className="text-semibold text-[#0b1c3a] mb-5">Plus de 500</h4>
-              <p className="text-gray-500 text-sm md:text-base">les clients nous font confiance et ont souscrit leur assurance chez Royal Services</p>
+              <h4 className="font-bold text-[#0b1c3a] mb-2 md:mb-5">Plus de 500</h4>
+              <p className="text-gray-500 text-sm lg:text-base">les clients nous font confiance et ont chez Royal Services</p>
             </div>
-            <div className="h-44 w-44 md:h-48 md:w-48  shadow-xl rounded-xl p-3 border-l-8 border-orange-600">
+            <div className="bg-white h-40 w-[166px] md:h-44 md:w-[166px] lg:h-48 lg md:w-48  shadow-xl rounded-xl p-2 md:p-3 border-l-8 border-orange-600">
               <span>👨🏾‍💼</span>
-            <h4 className="text-semibold text-[#0b1c3a] mb-5">300 + assureurs</h4>
-              <p className="text-gray-500 text-sm md:text-base"> afin que vous puissiez comparer facilement et de manière transparente</p>
+            <h4 className="font-bold text-[#0b1c3a] mb-2 md:mb-5">300 + assureurs</h4>
+              <p className="text-gray-500 text-sm lg:text-base"> afin que vous puissiez comparer facilement et de manière transparente</p>
             </div>
-            <div className="h-44 w-44 md:h-48 md:w-48  shadow-xl rounded-xl -mt-6 p-3 border-l-8 border-orange-600">
+            <div className="bg-white h-40 w-[166px] md:h-44 md:w-[166px] lg:h-48 lg md:w-48 shadow-xl rounded-xl -mt-6 p-2 md:p-3 border-l-8 border-orange-600">
             <span>💳</span>
-            <h4 className="text-semibold text-[#0b1c3a] mb-5">Meilleur prix</h4>
-              <p className="text-gray-500 text-sm md:text-base">pour tous les régimes d’assurance disponibles en ligne</p>
+            <h4 className="font-bold text-[#0b1c3a] mb-2 md:mb-5">Meilleur prix</h4>
+              <p className="text-gray-500 text-sm lg:text-base">pour tous les régimes d’assurance disponibles en ligne</p>
             </div>
-            <div className="h-44 w-44 md:h-48 md:w-48  shadow-xl rounded-xl p-3 border-l-8 border-orange-600">
+            <div className="bg-white h-40 w-[166px] md:h-44 md:w-[166px] lg:h-48 lg md:w-48 shadow-xl rounded-xl p-2 lg:p-3 border-l-8 border-orange-600">
               <span>🧒🏾</span>
-            <h4 className="text-semibold text-[#0b1c3a] mb-5">Plus de 500</h4>
-              <p className="text-gray-500 text-sm md:text-base">support built in with every policy for help, when you need it the most</p>
+            <h4 className="font-bold text-[#0b1c3a] mb-2 md:mb-5">Plus de 500</h4>
+              <p className="text-gray-500 text-sm lg:text-base">support built in with every policy for help, when you need it the most</p>
             </div>
           </div>
         </div>
         
         
-        <Assurance/>
+       
         
       </div>
     </div>
 
     <div className="grid mt-32">
-      <h2 className="text-xl text-[#0b1c3a] font-bold mb-10 md:px-8 px-3">Lavage et Mechanic modern</h2>
-      <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 px-3 md:px-12">
-        {/* {Data4.map(item=>( */}
-         <Mechanic_Service item={Data4[0]} margin=''/>
-         
-          <Mechanic_Service item={Data4[1]} margin=""/>
+      <h2 className="text-xl text-orange-600 font-bold mb-10 md:px-8 px-3">Lavage et Mechanic modern</h2>
+      <div className="grid gap-3 md:gap-8 grid-cols-2 lg:grid-cols-3 px-3 md:px-12">
+        {Data4.map(item=>(
+         <Mechanic_Service item={item} margin='' key={item.id}/>
          
          
-         <Mechanic_Service item={Data4[2]} margin=""/>
-         <Mechanic_Service item={Data4[3]} margin=""/>
-         <Mechanic_Service item={Data4[4]} margin=""/>
-         <Mechanic_Service item={Data4[5]} margin=""/>
-        {/* ))} */}
+        ))}
       </div>
     </div>
 
 
     </div>
+   
     
-    <div className="max-w-2xl md:max-w-4xl mx-8 sm:mx-auto md:h-80 rounded-xl bg-blue-900 grid sm:grid-cols-2 overflow-hidden mt-40" id="contact" name="#contacts">
-    <div className="h-full bg-[#0b1c3a] p-7">
-        <p className="text-center mb-10 md:text-left text-gray-100 mt-6">Royal Car Service, les experts automobiles. C’est la bonne adresse pour une qualité de service exceptionnelle pour votre voiture. Que vous cherchiez des conseils, <span className="text-orange-600 font-semibold">064839857</span> travaux de réparation ou de service, nous pouvons offrir le package complet.</p>
-        <div className="max-w-[220px] flex items-center space-x-3 mx-auto md:mx-0 mb-5 px-6 py-4 bg-orange-600 text-gray-200 font-semibold rounded-md text-center shadow-2xl shadow-orange-600/20">
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-          </svg>
-          <span>Contactez Nous!</span>
-
-        </div>
-    </div>
-    <div className="px-4 py-6 h-80 -order-1 md:order-1" style={{backgroundImage:`url('./bg.jpg')`,backgroundRepeat:'no-repeat', backgroundSize:'cover',backgroundPosition:'center'}}></div>
-    </div>
+    
 
     <div className="max-w-6xl mx-auto px-3 md:px-8 md:pt-32 pb-20 mt-20 mb-28" id="about" name="#about">
       
@@ -568,20 +560,20 @@ export default function Home() {
         <p className="mb-12 text-gray-500 text-base">Royal Car Service, les experts automobiles. C’est la bonne adresse pour une qualité de service exceptionnelle pour votre voiture.</p>
         {
           SkillsData.map(skills=>(
-          <div className="bg-[#0b1c3a] rounded-md shadow-xl mb-4 border-l-8 border-orange-600" key={skills.id}>
-            <div className="flex p-4 items-center justify-between cursor-pointer">
-              <span className="font-semibold text-white">{skills.title}</span>
-              <span onClick={()=>handleSetIndex(skills.id)} className="transition-all duration-500">
-                {Index == skills.id ?<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+          <motion.div  transition={{layout:{duration:.3}}} layout className="bg-[#0b1c3a] rounded-md shadow-xl mb-4 border-l-8 border-orange-600" key={skills.id}>
+            <div className="flex p-3 md:p-4 items-center justify-between cursor-pointer">
+              <motion.span layout="position" className="font-semibold text-white text-[12px] md:text-base">{skills.title}</motion.span>
+              <motion.span layout="position" onClick={()=>handleSetIndex(skills.id)} className="transition-all duration-500">
+                {Index == skills.id ?<motion.svg layout="position" xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
 <path strokeLinecap="round" strokeLinejoin="round" d="M18 12H6" />
-</svg>:<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-orange-600 transition-all duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+</motion.svg>:<motion.svg layout="position" xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-orange-600 transition-all duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                </svg>
+                </motion.svg>
                 }
-              </span>
+              </motion.span>
             </div>
-            { Index == skills.id &&  <div className=" p-4 rounded-md text-gray-500">{skills.answer}</div>}
-          </div>
+            { Index == skills.id &&  <motion.div className=" p-4 rounded-md text-gray-500">{skills.answer}</motion.div>}
+          </motion.div>
           ))
         }
        
@@ -591,7 +583,7 @@ export default function Home() {
   </div>
     <Footer/>
     
-    </>
+    </div>
   )
 }
 

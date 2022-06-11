@@ -10,7 +10,7 @@ const Footer = () => {
       ] 
   return (
     <footer className="bg-[#0b1c3a] mt-32 px-3 md:px-6 pt-6 pb-12 md:pb-4" id="footer">
-    <div className="max-w-5xl sm:mx-auto grid sm:grid-cols-2 md:grid-cols-3 gap-4 pt-14 pb-10">
+      <div className="max-w-5xl sm:mx-auto grid sm:grid-cols-2 md:grid-cols-3 md:place-self-center gap-4 pt-14 pb-10">
        
        <div className="">
            <h5 className="font-bold mb-4 text-white text-xl">Royal <span className="text-orange-600">Services</span></h5>
@@ -29,7 +29,7 @@ const Footer = () => {
         </div>
         </div>
        </div>
-       <div className="">
+       <div className="md:ml-10">
            <h5 className="font-bold mb-4 text-white">Les Liens</h5>
            <ul className="flex flex-col space-y-3">
            {NavItems.map(item=>(
@@ -91,7 +91,7 @@ const Footer = () => {
           </div>
           </div>
        </div>
-    </div>
+      </div>
    </footer>
   )
 }

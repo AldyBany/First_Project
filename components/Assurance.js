@@ -1,20 +1,68 @@
 import React from 'react'
+import { Swiper, SwiperSlide } from 'swiper/react';
+import Slider from "react-slick";
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
+
+
+// Import Swiper styles
+import 'swiper/css';
 
 const Assurance = () => {
-  return (
-    <div className="grid grid-cols-3 md:grid-cols-7 gap-2">
-        {
-            assuranceData.map(assurance=>(
-                <div className="flex flex-col items-center space-y-3" key={assurance.id}>
-                    <div className="md:w-28 w-24 h-24 md:h-28 rounded-full p-2 shadow-xl flex justify-center items-center">
-                        {assurance.icon}
-                    
-                    </div>
-                    <p className="text-[#0b1c3a] font-semibold">{assurance.title}</p>
-
-                </div>        
-            ))
+    const responsive = {
+        superLargeDesktop: {
+          // the naming can be any, depends on you.
+          breakpoint: { max: 4000, min: 3000 },
+          items: 5
+        },
+        desktop: {
+          breakpoint: { max: 3000, min: 1024 },
+          items: 2
+        },
+        tablet: {
+          breakpoint: { max: 1024, min: 464 },
+          items: 2
+        },
+        mobile: {
+          breakpoint: { max: 464, min: 0 },
+          items: 1
         }
+      };
+   
+  return (
+    <div className="">
+        <Carousel responsive={responsive} arrows={false} infinite={true}>
+        <div>Item 1</div>
+        <div>Item 2</div>
+        <div>Item 3</div>
+        <div>Item 4</div>
+        </Carousel>
+       
+        {/* {assuranceData.map(assurance=>( overflow-hidden
+              
+
+               
+              <div className="flex flex-col items-center space-y-3">
+                  <div className="w-24 h-24 rounded-full p-2 shadow-xl flex justify-center items-center">
+                      {assurance.icon}
+                  
+                  </div>
+                  <p className="text-[#0b1c3a] font-semibold">{assurance.title}</p>
+
+              </div> 
+    
+              
+                
+       )) */}
+      
+       
+       
+      
+          
+        
+       
+   
+        
         
       
        
